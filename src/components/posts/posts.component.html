@@ -1,0 +1,37 @@
+<div class="container">
+  <h1>MAQE Forum</h1>
+
+  <div class="grid">
+    <ng-container *ngFor="let postItem of posts$ | async; let i = index">
+      <div class="col-12 lg:col-6 xl:col-4">
+        <p-card styleClass="card">
+          <ng-template pTemplate="header">
+            <div
+              class="flex align-items-center flex-wrap"
+              style="padding:10px 0 0 10px"
+            >
+              <h3 class="flex" style="color:red;margin-right:10px">
+                {{ postItem?.author?.name }}
+              </h3>
+              post on
+              {{ postItem?.post?.created_at | date : 'MMMM dd, YYYY HH:mm:ss' }}
+            </div>
+          </ng-template>
+          <div class="flex gap-3">
+            <p class="m-0" class="flex" style="margin:0">
+              <p-image
+                src="{{ postItem.post.image_url }}"
+                [attr.alt]="'postImage' + i"
+                width="250"
+              />
+            </p>
+            <div c lass="flex flex-column gap-3">
+              <h3 class="post-title">{{ postItem.post.title }}</h3>
+              <span class="post-body"> {{ postItem.post.body }}</span>
+            </div>
+          </div>
+        </p-card>
+      </div>
+    </ng-container>
+  </div>
+</div>
